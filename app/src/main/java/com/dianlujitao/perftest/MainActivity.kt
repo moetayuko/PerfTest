@@ -24,10 +24,10 @@
 
 package com.dianlujitao.perftest
 
-import android.content.ComponentName
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import com.google.vr.ndk.base.AndroidCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,26 +35,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var button = findViewById(R.id.sustained_on) as Button
+        var button = findViewById<Button>(R.id.sustained_on) as Button
         button.setOnClickListener {
-            window.setSustainedPerformanceMode(true)
+            AndroidCompat.setSustainedPerformanceMode(this, true)
         }
 
-        button = findViewById(R.id.sustained_off) as Button
+        button = findViewById<Button>(R.id.sustained_off) as Button
         button.setOnClickListener {
-            window.setSustainedPerformanceMode(false)
+            AndroidCompat.setSustainedPerformanceMode(this, false)
         }
 
-        button = findViewById(R.id.vr_on) as Button
+        button = findViewById<Button>(R.id.vr_on) as Button
         button.setOnClickListener {
-            setVrModeEnabled(true, ComponentName("com.google.vr.vrcore",
-                    "com.google.vr.vrcore.common.VrCoreListenerService"))
+            AndroidCompat.setVrModeEnabled(this, true)
         }
 
-        button = findViewById(R.id.vr_off) as Button
+        button = findViewById<Button>(R.id.vr_off) as Button
         button.setOnClickListener {
-            setVrModeEnabled(false, ComponentName("com.google.vr.vrcore",
-                    "com.google.vr.vrcore.common.VrCoreListenerService"))
+            AndroidCompat.setVrModeEnabled(this, false)
         }
     }
 }
